@@ -209,7 +209,7 @@ namespace Igtampe.David2.Actions {
             //Get the Commission
             var c = await Get(session, id);
             c.Status = Status.DONE;
-            c.StartDate = DateTime.UtcNow;
+            c.EndDate = DateTime.UtcNow;
 
             Context.Update(c);
             await Context.SaveChangesAsync();

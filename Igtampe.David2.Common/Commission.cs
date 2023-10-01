@@ -48,6 +48,10 @@ namespace Igtampe.David2.Common {
         public DateTime? ExpectedDate { get; set;} = null;
         public int? SLA => (ExpectedDate - StartDate)?.Days;
         public int? TTC => (EndDate - StartDate)?.Days;
+
+        public int? DaysOver => (DateTime.Now - ExpectedDate)?.Days;
+
+        public bool IsOverdue => DaysOver > 0;
         public DateOnly? Month => StartDate==null ? null : 
             new DateOnly(StartDate?.Year ?? 1, StartDate?.Month ?? 1, 1);
 
