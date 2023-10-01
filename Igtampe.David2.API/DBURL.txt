@@ -1,1 +1,0 @@
-Host=loud-whale-10930.7tt.cockroachlabs.cloud; Port=26257;  Username=david; Password=SsWxZJUL9AXFlEUHKXdHaQ; Database=david; Pooling=true; SSL Mode=Require; TrustServerCertificate=True;

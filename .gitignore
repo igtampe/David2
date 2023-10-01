@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Igtampe.David2.API/AUTH_SALT.txt
+/Igtampe.David2.API/DBURL.txt
+/Igtampe.David2.Data/DBURL.txt
