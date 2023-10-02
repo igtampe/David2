@@ -1,4 +1,4 @@
-import { ItemDelete, ItemGet, ItemUpdate, ItemsGet } from "./CrudAPI";
+import { ItemCreate, ItemDelete, ItemGet, ItemUpdate, ItemsGet } from "./CrudAPI";
 import { APIURL, GeneratePut } from "./common";
 
 const api = "Commission"
@@ -30,7 +30,7 @@ function ReusablePut(setLoading, Session, url, onSuccess, onError){
     setLoading(true);
     fetch(url, GeneratePut(Session,item))
     .then(response => response.json()).then(data => {
-        if (data.error) {
+        if (data.Error) {
             onError(data)
             setLoading(false)
             return;

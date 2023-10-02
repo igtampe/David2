@@ -3,8 +3,16 @@ import { GenerateGet, APIURL, GenerateJSONPost, GenerateJSONPut, GenerateDelete 
 export function ItemsGet(setLoading, Session, setItem, onError, api) {
     setLoading(true);
     fetch(`${APIURL}/API/${api}`, GenerateGet(Session))
-        .then(response => response.json()).then(data => {
-            if (data.error) {
+        .then(response =>{
+            if(!response.ok){
+                return {
+                    "Error" : true,
+                    "Reason" : `From Server: ${response.status}`,
+                }
+            }
+            return response.json()
+        }).then(data => {
+            if (data.Error) {
                 onError(data)
                 setLoading(false)
                 return;
@@ -17,8 +25,16 @@ export function ItemsGet(setLoading, Session, setItem, onError, api) {
 export function ItemGet(setLoading, Session, id, setItem, onError, api) {
     setLoading(true);
     fetch(`${APIURL}/API/${api}/${id}`, GenerateGet(Session))
-        .then(response => response.json()).then(data => {
-            if (data.error) {
+        .then(response =>{
+            if(!response.ok){
+                return {
+                    "Error" : true,
+                    "Reason" : `From Server: ${response.status}`,
+                }
+            }
+            return response.json()
+        }).then(data => {
+            if (data.Error) {
                 onError(data)
                 setLoading(false)
                 return;
@@ -32,8 +48,16 @@ export function ItemGet(setLoading, Session, id, setItem, onError, api) {
 export function ItemCreate(setLoading, Session, item, onSuccess, onError, api) {
     setLoading(true);
     fetch(`${APIURL}/API/${api}`, GenerateJSONPost(Session,item))
-        .then(response => response.json()).then(data => {
-            if (data.error) {
+        .then(response => {
+            if(!response.ok){
+                return {
+                    "Error" : true,
+                    "Reason" : `From Server: ${response.status}`,
+                }
+            }
+            return response.json()
+        }).then(data => {
+            if (data.Error) {
                 onError(data)
                 setLoading(false)
                 return;
@@ -47,8 +71,16 @@ export function ItemCreate(setLoading, Session, item, onSuccess, onError, api) {
 export function ItemUpdate(setLoading, Session, id, item, onSuccess, onError, api) { 
     setLoading(true);
     fetch(`${APIURL}/API/${api}/${id}`, GenerateJSONPut(Session,item))
-        .then(response => response.json()).then(data => {
-            if (data.error) {
+        .then(response => {
+            if(!response.ok){
+                return {
+                    "Error" : true,
+                    "Reason" : `From Server: ${response.status}`,
+                }
+            }
+            return response.json()
+        }).then(data => {
+            if (data.Error) {
                 onError(data)
                 setLoading(false)
                 return;
@@ -61,8 +93,16 @@ export function ItemUpdate(setLoading, Session, id, item, onSuccess, onError, ap
 export function ItemDelete(setLoading, Session, id, onSuccess, onError, api) { 
     setLoading(true);
     fetch(`${APIURL}/API/${api}/${id}`, GenerateDelete(Session))
-        .then(response => response.json()).then(data => {
-            if (data.error) {
+        .then(response => {
+            if(!response.ok){
+                return {
+                    "Error" : true,
+                    "Reason" : `From Server: ${response.status}`,
+                }
+            }
+            return response.json()
+        }).then(data => {
+            if (data.Error) {
                 onError(data)
                 setLoading(false)
                 return;

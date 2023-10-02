@@ -1,17 +1,24 @@
 import { Snackbar, Alert } from "@mui/material"
 import React from "react";
 
-export default function AlertSnackbar(props) {
+export default function AlertSnackbar({
+    open=false,
+    setOpen,
+    result={
+        "severity":"error",
+        "text":"Something happened!"
+    }
+}) {   
 
-    const handleClose = (event) =>{ props.setOpen(false) }
+    const handleClose = (event) =>{ setOpen(false) }
 
-    var Severity = props.result ? props.result.severity : 'success'
+    var Severity = result.severity
     if(Severity.toLowerCase()==="danger") {Severity = 'error'} 
 
     return(
-        <Snackbar open={props.open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity={Severity} sx={{ width: '100%' }}>
-                {props.result ? props.result.text : 'something happened!'}
+                {result.text}
             </Alert>
         </Snackbar>
     )

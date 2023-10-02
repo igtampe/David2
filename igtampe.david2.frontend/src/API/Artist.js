@@ -1,4 +1,4 @@
-import { ItemDelete, ItemGet, ItemUpdate, ItemsGet } from "./CrudAPI";
+import { ItemCreate, ItemDelete, ItemGet, ItemUpdate, ItemsGet } from "./CrudAPI";
 
 const api = "Artist"
 

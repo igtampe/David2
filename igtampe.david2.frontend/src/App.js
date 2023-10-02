@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import { ThemeProvider } from '@mui/material/styles';
 import Cookies from 'universal-cookie/es6';
-import useWindowDimensions from './Components/Hooks/useWindowDimensions';
-import NavMenu from './Components/Navbar/NavBar';
+import useWindowDimensions from './components/hooks/useWindowDimensions';
+import NavMenu from './components/nav/NavBar';
 
 import { GetMe } from './API/User';
 import { darkTheme } from './Themes';
 import { /*CircularProgress, */ CssBaseline, Container } from '@mui/material';
-import { Footer } from './Components/Footer';
-import Auth from './Components/Auth';
+import { Footer } from './components/Footer';
+import AuthPage from './components/pages/auth/AuthPage';
+import DataPage from './components/pages/data/DataPage';
+import CommissionsPage from './components/pages/comboard/CommissionsPage';
+import DashboardPage from './components/pages/dashboard/DashboardPage';
+import NotFoundPage from './components/pages/notfound/NotFoundPage';
 
 //Cookies should only really be accessed here.
 const cookies = new Cookies();
@@ -33,7 +37,7 @@ export default function App() {
   const [InvalidSession, setInvalidSession] = useState(false);
 
   //Since this app is just for me, this will always be dark mode
-  const darkMode=true
+  const darkMode = true
 
   //This is the set session that must be passed down
   const SetSession = (SessionID) => {
@@ -69,20 +73,28 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Layout DarkMode={darkMode} Session={Session} InvalidSession={InvalidSession} setSession={SetSession} RefreshUser={RefreshUser} User={User} Vertical={Vertical}>
-        <Route exact path='/'>
-          {Session
-            ? <> Dashboard of all comms (The Dash of the Sheet) </>
-            : <Redirect to='/Login' />}
-        </Route>
-        <Route path='/Login'>
-          {Session ? <Redirect to='/Trips' /> : <Auth DarkMode={darkMode} />}
-        </Route>
-        <Route path='/Data'>
-          {Session
-            ? <> Data of all commissions (Basically the Trello) </>
-            : <Redirect to='/Login' />}
-        </Route>
-        <Footer />
+        <Switch>
+          <Route exact path='/'>
+            {Session
+              ? <DashboardPage Session={Session} Vertical={Vertical} />
+              : <Redirect to='/Login' />}
+          </Route>
+          <Route exact path='/Login'>
+            {Session ? <Redirect to='/' /> : <AuthPage DarkMode={darkMode} />}
+          </Route>
+          <Route exact path='/Board'>
+            {Session
+              ? <CommissionsPage Session={Session} Vertical={Vertical} />
+              : <Redirect to='/Login' />}
+          </Route>
+          <Route exact path='/Data'>
+            {Session
+              ? <DataPage Session={Session} Vertical={Vertical} />
+              : <Redirect to='/Login' />}
+          </Route>
+          <Route path="*"><NotFoundPage Vertical={Vertical}/></Route>
+        </Switch>
+        {Session ? <Footer /> : <></>}
       </Layout>
     </ThemeProvider>
   );

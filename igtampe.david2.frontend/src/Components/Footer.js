@@ -2,7 +2,6 @@ import { Divider, Typography } from '@mui/material';
 import React from 'react';
 
 export function Footer() {
-
     return(
       <>
         <Divider style={{marginTop:'25px', marginBottom:'25px', clear:'both'}}/>

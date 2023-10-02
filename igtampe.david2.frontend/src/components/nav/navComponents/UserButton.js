@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, Divider, ListItem, Menu, MenuItem } from "@mui/material";
 import { APIURL, GenerateJSONPut } from "../../../API/common";
 import PasswordChangeButton from "./PasswordChangeButton";
-import PicturePicker from "../../Reusable/PicturePicker";
-import AlertSnackbar from "../../Reusable/AlertSnackbar";
+import PicturePicker from "../../reusable/PicturePicker";
+import AlertSnackbar from "../../reusable/AlertSnackbar";
 
 export default function UserButton(props) {
 
@@ -53,7 +53,7 @@ export default function UserButton(props) {
     return (
         <div>
             <Button onClick={handleClick} style={{ textTransform: 'none' }}>
-                <img src={props.User.imageURL === "" ? "/media/david.png" : props.User.imageURL} alt="Profile" width="30px" style={{ margin: "5px", marginLeft: "10px" }} />
+                <img src={props.User.imageURL === "" ? "/icons/blankperson.png" : props.User.imageURL} alt="Profile" width="30px" style={{ margin: "5px", marginLeft: "10px" }} />
             </Button>
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose} >
                 <MenuItem onClick={handlePickerOpen}>Change Image</MenuItem>
@@ -64,7 +64,7 @@ export default function UserButton(props) {
             </Menu>
 
             <AlertSnackbar open={snackOpen} setOpen={setSnackOpen} result={result} />
-            <PicturePicker open={pickerOpen} setOpen={setPickerOpen} imageURL={props.User.imageUrl} setImageURL={setImageURL} defaultImage={"/icons/person.png"} />
+            <PicturePicker open={pickerOpen} setOpen={setPickerOpen} imageURL={props.User.imageUrl} setImageURL={setImageURL} defaultImage={"/icons/blankperson.png"} />
 
         </div>
     );

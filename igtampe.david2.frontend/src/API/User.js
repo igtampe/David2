@@ -22,7 +22,7 @@ export const GetUserDirectory = (setLoading, setUsers, Query, Skip, Take) => {
         .then(response => { return response.json() }).then(data => {
 
             //Remember to check for errors and set errors if needed
-            if (data.error || data.errors) { return; }
+            if (data.Error || data.Errors) { return; }
 
             setUsers(data)
             setLoading(false)
@@ -59,8 +59,8 @@ export const GetUser = (setLoading, ID, setUser, setError) => {
         .then(response => response.json()).then(data => {
 
             //Remember to check for errors and set errors if needed
-            if (data.error || data.errors) {
-                setError(data.error ?? "An unknown serverside error occurred");
+            if (data.Error || data.Errors) {
+                setError(data.Reason ?? "An unknown serverside error occurred");
                 return;
             }
 
@@ -86,8 +86,8 @@ export const ChangePassword = (setLoading, Session, currentpass, newpass, setErr
         .then(response => { return response.json() }).then(data => {
 
             //Remember to check for errors and set errors if needed
-            if (data.error || data.errors) {
-                setError(data.error ?? "An unknown serverside error occurred");
+            if (data.Error || data.Errors) {
+                setError(data.Reason ?? "An unknown serverside error occurred");
                 return;
             }
 
@@ -112,8 +112,8 @@ export const ResetPassword = (setLoading, Session, id, newpass, setError) => {
         .then(response => { return response.json() }).then(data => {
 
             //Remember to check for errors and set errors if needed
-            if (data.error || data.errors) {
-                setError(data.error ?? "An unknown serverside error occurred");
+            if (data.Error || data.Errors) {
+                setError(data.Reason ?? "An unknown serverside error occurred");
                 return;
             }
 
@@ -132,8 +132,8 @@ export const ChangePFP = (setLoading, Session, imageURL, setError) => {
         .then(response => { return response.json() }).then(data => {
 
             //Remember to check for errors and set errors if needed
-            if (data.error || data.errors) {
-                setError(data.error ?? "An unknown serverside error occurred");
+            if (data.Error || data.Errors) {
+                setError(data.Reason ?? "An unknown serverside error occurred");
                 return;
             }
 
@@ -151,8 +151,8 @@ export const Register = (setLoading, username, password, setError, onSuccess) =>
     })).then(a => a.json()).then(data => {
         setLoading(false)
 
-        if (data.error || data.errors) {
-            setError(data.reason ?? "An unknown serverside error occurred");
+        if (data.Error || data.Errors) {
+            setError(data.Reason ?? "An unknown serverside error occurred");
             return;
         }
 

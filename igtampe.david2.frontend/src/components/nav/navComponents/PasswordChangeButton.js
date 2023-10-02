@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, CircularProgress, TextField } from "@mui/material";
 import Cookies from 'universal-cookie';
 import { APIURL, GenerateJSONPut } from "../../../API/common";
-import AlertSnackbar from "../../Reusable/AlertSnackbar";
+import AlertSnackbar from "../../reusable/AlertSnackbar";
 
 const cookies = new Cookies();
 
