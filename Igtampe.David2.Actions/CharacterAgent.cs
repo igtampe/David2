@@ -24,7 +24,9 @@ namespace Igtampe.David2.Actions {
 
         public async Task<List<Character>> Get(Guid? session) {
             var s = await GetSession(session);
-            var c = await Context.UserCharacters(s.Username).ToListAsync();
+            var c = await Context.UserCharacters(s.Username)
+                .OrderBy(A => A.Name)
+                .ToListAsync();
             return c;
         }
 
